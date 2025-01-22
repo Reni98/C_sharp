@@ -1,0 +1,7 @@
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Tömb\Tömb\bin\Debug\Tömb.exe.config
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Tömb\Tömb\bin\Debug\Tömb.exe
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Tömb\Tömb\bin\Debug\Tömb.pdb
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Tömb\Tömb\obj\Debug\Tömb.csproj.AssemblyReference.cache
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Tömb\Tömb\obj\Debug\Tömb.csproj.CoreCompileInputs.cache
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Tömb\Tömb\obj\Debug\Tömb.exe
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Tömb\Tömb\obj\Debug\Tömb.pdb

@@ -1,0 +1,7 @@
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Többdimenziós Tömbök és Mátrixok\Többdimenziós Tömbök és Mátrixok\bin\Debug\Többdimenziós Tömbök és Mátrixok.exe.config
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Többdimenziós Tömbök és Mátrixok\Többdimenziós Tömbök és Mátrixok\bin\Debug\Többdimenziós Tömbök és Mátrixok.exe
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Többdimenziós Tömbök és Mátrixok\Többdimenziós Tömbök és Mátrixok\bin\Debug\Többdimenziós Tömbök és Mátrixok.pdb
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Többdimenziós Tömbök és Mátrixok\Többdimenziós Tömbök és Mátrixok\obj\Debug\Többdimenziós Tömbök és Mátrixok.csproj.AssemblyReference.cache
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Többdimenziós Tömbök és Mátrixok\Többdimenziós Tömbök és Mátrixok\obj\Debug\Többdimenziós Tömbök és Mátrixok.csproj.CoreCompileInputs.cache
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Többdimenziós Tömbök és Mátrixok\Többdimenziós Tömbök és Mátrixok\obj\Debug\Többdimenziós Tömbök és Mátrixok.exe
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Többdimenziós Tömbök és Mátrixok\Többdimenziós Tömbök és Mátrixok\obj\Debug\Többdimenziós Tömbök és Mátrixok.pdb

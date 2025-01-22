@@ -1,0 +1,7 @@
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Autoboxing\Autoboxing\bin\Debug\Autoboxing.exe.config
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Autoboxing\Autoboxing\bin\Debug\Autoboxing.exe
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Autoboxing\Autoboxing\bin\Debug\Autoboxing.pdb
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Autoboxing\Autoboxing\obj\Debug\Autoboxing.csproj.AssemblyReference.cache
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Autoboxing\Autoboxing\obj\Debug\Autoboxing.csproj.CoreCompileInputs.cache
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Autoboxing\Autoboxing\obj\Debug\Autoboxing.exe
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Autoboxing\Autoboxing\obj\Debug\Autoboxing.pdb

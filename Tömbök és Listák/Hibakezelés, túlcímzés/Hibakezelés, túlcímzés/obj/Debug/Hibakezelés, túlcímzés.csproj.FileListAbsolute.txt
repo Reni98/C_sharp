@@ -1,0 +1,7 @@
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Hibakezelés, túlcímzés\Hibakezelés, túlcímzés\bin\Debug\Hibakezelés, túlcímzés.exe.config
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Hibakezelés, túlcímzés\Hibakezelés, túlcímzés\bin\Debug\Hibakezelés, túlcímzés.exe
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Hibakezelés, túlcímzés\Hibakezelés, túlcímzés\bin\Debug\Hibakezelés, túlcímzés.pdb
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Hibakezelés, túlcímzés\Hibakezelés, túlcímzés\obj\Debug\Hibakezelés, túlcímzés.csproj.AssemblyReference.cache
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Hibakezelés, túlcímzés\Hibakezelés, túlcímzés\obj\Debug\Hibakezelés, túlcímzés.csproj.CoreCompileInputs.cache
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Hibakezelés, túlcímzés\Hibakezelés, túlcímzés\obj\Debug\Hibakezelés, túlcímzés.exe
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Hibakezelés, túlcímzés\Hibakezelés, túlcímzés\obj\Debug\Hibakezelés, túlcímzés.pdb

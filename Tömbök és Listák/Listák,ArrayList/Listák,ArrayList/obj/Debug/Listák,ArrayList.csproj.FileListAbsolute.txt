@@ -1,0 +1,7 @@
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Listák,ArrayList\Listák,ArrayList\bin\Debug\Listák,ArrayList.exe.config
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Listák,ArrayList\Listák,ArrayList\bin\Debug\Listák,ArrayList.exe
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Listák,ArrayList\Listák,ArrayList\bin\Debug\Listák,ArrayList.pdb
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Listák,ArrayList\Listák,ArrayList\obj\Debug\Listák,ArrayList.csproj.AssemblyReference.cache
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Listák,ArrayList\Listák,ArrayList\obj\Debug\Listák,ArrayList.csproj.CoreCompileInputs.cache
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Listák,ArrayList\Listák,ArrayList\obj\Debug\Listák,ArrayList.exe
+D:\2024,2025 tananyag\C#\Tömbök és Listák\Listák,ArrayList\Listák,ArrayList\obj\Debug\Listák,ArrayList.pdb
