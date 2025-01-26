@@ -145,7 +145,90 @@ namespace Tömb
                 Ha a tömb aktuális eleme nagyobb, mint a maxSales, akkor frissítjük a maxSales értékét.
                 Ha a tömb aktuális eleme kisebb, mint a minSales, akkor frissítjük a minSales értékét.
                 A legnagyobb és legkisebb napi eladást kiírjuk a konzolra.
+
+                
              */
+
+            /* 
+ * Tömbök műveletei
+   - Elemet hozzáadni, eltávolítani, módosítani
+   - Tömbök összehasonlítása, keresése, sorrendezés
+ */
+
+/* Tömb elemének módosítása */
+int[] numbers = { 1, 2, 3, 4, 5 };
+numbers[0] = 10; // Az első elem értékének módosítása
+numbers[4] = 50; // Az utolsó elem értékének módosítása (5 elemű tömb esetén)
+
+/* Tömbök összehasonlítása és keresése */
+int[] numbersToCompare = { 10, 20, 30, 40, 50 };
+bool areArraysEqual = numbers.SequenceEqual(numbersToCompare);
+Console.WriteLine("A tömbök egyenlőek? " + areArraysEqual);
+
+/* Tömb elem keresése */
+int searchNumber = 40;
+int index = Array.IndexOf(numbers, searchNumber);
+if (index != -1)
+{
+    Console.WriteLine("A szám " + searchNumber + " megtalálható a " + index + " indexen.");
+}
+else
+{
+    Console.WriteLine("A szám nem található meg a tömbben.");
+}
+
+/* Tömb sorrendezése */
+Array.Sort(numbers);
+Console.WriteLine("Rendezett tömb: ");
+foreach (int num in numbers)
+{
+    Console.WriteLine(num);
+}
+
+/* Tömb elem eltávolítása (lehetőség a tömb újraépítésére) */
+List<int> numberList = new List<int>(numbers);
+numberList.Remove(50); // Elvégezzük a törlést
+numbers = numberList.ToArray(); // Visszaalakítjuk tömbbé
+Console.WriteLine("Tömb 50 eltávolítása után:");
+foreach (int num in numbers)
+{
+    Console.WriteLine(num);
+}
+
+/* Tömb bejárása ciklusokkal */
+Console.WriteLine("For ciklussal való bejárás:");
+for (int i = 0; i < numbers.Length; i++)
+{
+    Console.WriteLine("Elem " + i + ": " + numbers[i]);
+}
+
+/* Gyakorlati példa: Heti eladások nyomon követése */
+int[] dailySales = { 150, 200, 170, 300, 250, 100, 180 };
+
+// Összes eladás kiszámítása
+int totalSales = 0;
+for (int i = 0; i < dailySales.Length; i++)
+{
+    totalSales += dailySales[i];
+}
+Console.WriteLine("Összes heti eladás: " + totalSales);
+
+// Átlagos napi eladás kiszámítása
+double averageSales = (double)totalSales / dailySales.Length;
+Console.WriteLine("Átlagos napi eladás: " + averageSales);
+
+
+Console.WriteLine("Legnagyobb napi eladás: " + maxSales);
+Console.WriteLine("Legkisebb napi eladás: " + minSales);
+
+/* Magyarázat:
+   - Tömbök műveletei közé tartozik az elem hozzáadása (ha Listával dolgozunk), törlés, keresés, sorrendezés.
+   - A `SequenceEqual` metódus segítségével összehasonlíthatjuk két tömb tartalmát.
+   - Az `Array.IndexOf` segítségével kereshetünk egy adott elemet a tömbben.
+   - A `Array.Sort` segítségével rendezzük a tömb elemeit.
+   - Az `Array`-ből `List`-et készíthetünk, hogy elvégezhessük az eltávolítást, majd visszaalakíthatjuk tömbbé.
+   - A napi eladások példájában végigjárjuk a tömböt a szokásos `for` ciklussal és megjelenítjük az eredményeket.
+*/
             Console.ReadKey();
         }
     }
