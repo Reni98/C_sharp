@@ -185,15 +185,7 @@ foreach (int num in numbers)
     Console.WriteLine(num);
 }
 
-/* Tömb elem eltávolítása (lehetőség a tömb újraépítésére) */
-List<int> numberList = new List<int>(numbers);
-numberList.Remove(50); // Elvégezzük a törlést
-numbers = numberList.ToArray(); // Visszaalakítjuk tömbbé
-Console.WriteLine("Tömb 50 eltávolítása után:");
-foreach (int num in numbers)
-{
-    Console.WriteLine(num);
-}
+
 
 /* Tömb bejárása ciklusokkal */
 Console.WriteLine("For ciklussal való bejárás:");
@@ -221,6 +213,23 @@ Console.WriteLine("Átlagos napi eladás: " + averageSales);
 Console.WriteLine("Legnagyobb napi eladás: " + maxSales);
 Console.WriteLine("Legkisebb napi eladás: " + minSales);
 
+ // Eredeti tömb
+        int[] tomb = { 12, 5, 8, 20, 3 };
+
+        Console.WriteLine("Eredeti tömb:");
+        foreach (int szam in tomb)
+        {
+            Console.Write(szam + " ");
+        }
+
+        // Tömb megfordítása
+        Array.Reverse(tomb);
+
+        Console.WriteLine("\nMegfordított tömb:");
+        foreach (int szam in tomb)
+        {
+            Console.Write(szam + " ");
+        }
 /* Magyarázat:
    - Tömbök műveletei közé tartozik az elem hozzáadása (ha Listával dolgozunk), törlés, keresés, sorrendezés.
    - A `SequenceEqual` metódus segítségével összehasonlíthatjuk két tömb tartalmát.
