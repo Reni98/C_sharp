@@ -1,0 +1,7 @@
+D:\2024,2025 tananyag\C#\9_Whitespace és escape karakterek\Whitespace és escape karakterek\Whitespace és escape karakterek\bin\Debug\Whitespace és escape karakterek.exe.config
+D:\2024,2025 tananyag\C#\9_Whitespace és escape karakterek\Whitespace és escape karakterek\Whitespace és escape karakterek\bin\Debug\Whitespace és escape karakterek.exe
+D:\2024,2025 tananyag\C#\9_Whitespace és escape karakterek\Whitespace és escape karakterek\Whitespace és escape karakterek\bin\Debug\Whitespace és escape karakterek.pdb
+D:\2024,2025 tananyag\C#\9_Whitespace és escape karakterek\Whitespace és escape karakterek\Whitespace és escape karakterek\obj\Debug\Whitespace és escape karakterek.csproj.AssemblyReference.cache
+D:\2024,2025 tananyag\C#\9_Whitespace és escape karakterek\Whitespace és escape karakterek\Whitespace és escape karakterek\obj\Debug\Whitespace és escape karakterek.csproj.CoreCompileInputs.cache
+D:\2024,2025 tananyag\C#\9_Whitespace és escape karakterek\Whitespace és escape karakterek\Whitespace és escape karakterek\obj\Debug\Whitespace és escape karakterek.exe
+D:\2024,2025 tananyag\C#\9_Whitespace és escape karakterek\Whitespace és escape karakterek\Whitespace és escape karakterek\obj\Debug\Whitespace és escape karakterek.pdb
