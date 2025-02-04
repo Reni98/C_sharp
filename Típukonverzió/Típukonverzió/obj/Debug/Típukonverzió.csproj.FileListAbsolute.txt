@@ -1,0 +1,7 @@
+D:\2024,2025 tananyag\C#\11_Típuskonverzió\Típukonverzió\Típukonverzió\bin\Debug\Típukonverzió.exe.config
+D:\2024,2025 tananyag\C#\11_Típuskonverzió\Típukonverzió\Típukonverzió\bin\Debug\Típukonverzió.exe
+D:\2024,2025 tananyag\C#\11_Típuskonverzió\Típukonverzió\Típukonverzió\bin\Debug\Típukonverzió.pdb
+D:\2024,2025 tananyag\C#\11_Típuskonverzió\Típukonverzió\Típukonverzió\obj\Debug\Típukonverzió.csproj.AssemblyReference.cache
+D:\2024,2025 tananyag\C#\11_Típuskonverzió\Típukonverzió\Típukonverzió\obj\Debug\Típukonverzió.csproj.CoreCompileInputs.cache
+D:\2024,2025 tananyag\C#\11_Típuskonverzió\Típukonverzió\Típukonverzió\obj\Debug\Típukonverzió.exe
+D:\2024,2025 tananyag\C#\11_Típuskonverzió\Típukonverzió\Típukonverzió\obj\Debug\Típukonverzió.pdb
