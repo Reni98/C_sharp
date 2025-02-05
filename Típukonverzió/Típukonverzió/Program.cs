@@ -169,7 +169,38 @@ namespace Típukonverzió
 
             /*A TryParse metódus biztonságosabb, mivel nem dob kivételt, ha a konverzió nem sikerül, 
              * hanem false - ot ad vissza.*/
+            Parse:
 
+            A Parse metódus a sztringet egész számra konvertálja, és ha a bemeneti sztring nem konvertálható (például nem érvényes szám), akkor kivételt dob, konkrétan egy FormatException-t.
+                Ha a sztring nem szám, pl. "abc", akkor hibát kapunk:
+                string s = "abc";
+                int result = int.Parse(s);  // Hiba: FormatException
+
+            ToInt32:
+
+            A ToInt32 metódus az objektum típusának a konvertálására szolgál, és általában a Convert osztály részeként használják.
+            Ha a konvertálás nem lehetséges, akkor InvalidCastException-t dob.
+                object obj = "abc";
+                int result = Convert.ToInt32(obj);  // Hiba: FormatException
+
+            TryParse:
+
+            A TryParse egy sokkal biztonságosabb megoldás, mert nem dob kivételt, hanem egy bool értékkel jelzi, hogy sikerült-e a konvertálás.
+            Ha a konvertálás sikeres, akkor az eredményt egy kimeneti változóban kapjuk, különben a kimeneti változó 0 lesz, és a metódus false értéket ad vissza.
+                Ha a sztring nem szám, például "abc", akkor nem dob hibát, hanem a kimeneti változó 0 lesz, és false-t ad vissza:
+                string s = "abc";
+                if (int.TryParse(s, out int result)) {
+                Console.WriteLine(result);  // Nem kerül végrehajtásra
+                } else {
+                    Console.WriteLine("Hiba a konvertáláskor.");  // Kiírás: Hiba a konvertáláskor.
+                        }
+
+
+
+            Parse dob kivételt, ha a konvertálás nem lehetséges.                
+            ToInt32 a Convert osztály használatával konvertál, és hasonlóan dob kivételt, ha nem sikerül a konvertálás.
+            TryParse nem dob kivételt, hanem logikai értékkel és a kimeneti változóval jelzi, hogy sikerült-e a konvertálás.
+            A TryParse a legbiztonságosabb megoldás, mivel elkerüli a kivételek kezelését.
 
             Console.ReadKey();
 
