@@ -1,0 +1,7 @@
+C:\Users\renat\source\repos\Structura,Filekezeles\Structura,Filekezeles\bin\Debug\Structura,Filekezeles.exe.config
+C:\Users\renat\source\repos\Structura,Filekezeles\Structura,Filekezeles\bin\Debug\Structura,Filekezeles.exe
+C:\Users\renat\source\repos\Structura,Filekezeles\Structura,Filekezeles\bin\Debug\Structura,Filekezeles.pdb
+C:\Users\renat\source\repos\Structura,Filekezeles\Structura,Filekezeles\obj\Debug\Structura,Filekezeles.csproj.AssemblyReference.cache
+C:\Users\renat\source\repos\Structura,Filekezeles\Structura,Filekezeles\obj\Debug\Structura,Filekezeles.csproj.CoreCompileInputs.cache
+C:\Users\renat\source\repos\Structura,Filekezeles\Structura,Filekezeles\obj\Debug\Structura,Filekezeles.exe
+C:\Users\renat\source\repos\Structura,Filekezeles\Structura,Filekezeles\obj\Debug\Structura,Filekezeles.pdb
