@@ -13,48 +13,13 @@ namespace Structura_Filekezeles
             public string keresztnev;
             public string vezeteknev;
             public int eletkor;
-            //public bool ferfi;
+           
         }
 
         public static List<ember> Adatok = new List<ember>();
         static void Main(string[] args)
         {
-            //Dolgozóban van a struktúra
-            /* ember Dolgozo = new ember();
-             Dolgozo.eletkor = 19;
-             Console.WriteLine($"Az életkora: {Dolgozo.eletkor}");
-             ember[] Dolgozok = new ember[5];
-             //ember típusú változókat várunk
-             Dolgozok[0].eletkor = 19;
-             Dolgozok[0].keresztnev = "Lajos";
-             Dolgozok[1].eletkor = 39;
-             Dolgozok[1].keresztnev = "Pista";
-             Dolgozok[2].eletkor = 32;
-             Dolgozok[2].keresztnev = "Jane";
-             Dolgozok[3].eletkor = 56;
-             Dolgozok[3].keresztnev = "Janka";
-             Dolgozok[4].eletkor = 43;
-             Dolgozok[4].keresztnev = "Károly";
-
-             for (int i = 0; i < Dolgozok.Length; i++) {
-
-                 Console.WriteLine($"A dolgozó neve? {Dolgozok[i].keresztnev}, A kora: {Dolgozok[i].eletkor}");
-             }
-
-
-             try
-             {
-
-                 Console.WriteLine("Adj meg egy számot");
-                 int szam = int.Parse(Console.ReadLine());
-                 Console.WriteLine(szam);
-             }
-             catch (Exception e) {
-                 Console.WriteLine("Nem számot adtál meg");
-             }
-
-             */
-
+            
             FileStream f = new FileStream("adatok.txt", FileMode.Open);
             StreamReader sr = new StreamReader(f, Encoding.UTF8);
             ember aktualis = new ember();
