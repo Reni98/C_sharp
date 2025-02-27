@@ -22,13 +22,9 @@ namespace Auto
                 {
                     conn.Open();
                     Console.WriteLine("Sikeres kapcsolat az adatbázishoz!");
-                    Console.WriteLine("Add meg a nevet: ");
-                    string nev = Console.ReadLine();
-                    Console.WriteLine("Add meg az email címet: ");
-                    string email= Console.ReadLine();
+                 
                     //UjFelhasznalo("Kiss Péter", "peter@example.com");
                     //UjFelhasznalo("Nagy Anna", "anna@example.com");
-                    UjFelhasznalo(nev, email);
 
 
                     Console.WriteLine("\n--- Felhasználók listája ---");
