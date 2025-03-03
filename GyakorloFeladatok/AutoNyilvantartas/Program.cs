@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -14,20 +14,16 @@ namespace Cars
         public static string connectionString = "server=localhost;database=nyilvantartas;user=root;password=;";
         static void Main(string[] args)
         {
-            List<string> autok = new List<string>();
+            List<Auto> autok = new List<Auto>();
             string[] lines = File.ReadAllLines("nyilvantartas.txt");
-
-            foreach (string line in lines)
+            foreach (var line in lines)
             {
                 string[] adatok = line.Split(',');
-                autok.Add(adatok[0]);
-                autok.Add(adatok[1]);
-                autok.Add(adatok[2]);
-                autok.Add(adatok[3]);
-                autok.Add(adatok[4]);
+                Auto ujauto = new Auto(adatok[0], adatok[1], adatok[2], adatok[3], adatok[4]);
+                autok.Add(ujauto);
             }
+           
 
-          
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 try
@@ -35,15 +31,28 @@ namespace Cars
                     conn.Open();
                     Console.WriteLine("Sikeres kapcsolat az adatbázishoz!");
 
-                    //UjFelhasznalo("Kiss Péter", "peter@example.com");
-                    //UjFelhasznalo("Nagy Anna", "anna@example.com");
+                    Console.WriteLine("Adj meg egy id-t:");
+                    int id = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Ad meg a márkát");
+                    string marka = Console.ReadLine();
+                    Console.WriteLine("Adj meg egy rendszámot: ");
+                    string rendszam = Console.ReadLine();
+                    Console.WriteLine("Add meg az autó árát: ");
+                    int ar = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Add meg, hány db van belőle: ");
+                    int db = int.Parse(Console.ReadLine());
 
-                    for (int i = 0; i < autok.Count; i++)
-                    {
-                        UjAuto(int.Parse(autok[1]), autok[1], autok[1], int.Parse(autok[1]), int.Parse(autok[1]));
-                      
-                    }
+                        UjAuto(id,marka, rendszam,ar,db);
+                    
+                    Console.WriteLine("Sikeresen hozzá lettek adva az adatok az adatbázishoz.");
 
+
+                    //A TXT fájlban lévő sorok száma
+                    int osszeg = Auto.Megszamol(autok);
+                    Console.WriteLine($"Sorok száma:{osszeg}");
+                    //Megszámolja hány drágább autó van a feltétel alapján
+                    int draga = Auto.Dragabb(autok,9000000);
+                    Console.WriteLine($"A feltétel alapján: {draga} db ilyen autó.");
 
 
                 }
@@ -52,19 +61,14 @@ namespace Cars
                     Console.WriteLine("Hiba a kapcsolat során: " + ex.Message);
                 }
 
-
-
-
-
-
-
                 Console.ReadKey();
             }
         }
 
+
         static void UjAuto(int id, string automarka, string rendszam, int ar, int db)
         {
-            string query = "INSERT INTO cars (id, automarka, rendszam, ar,db) VALUES (@id, @automarka, @rendszam, @ar, @db)";
+            string query = "INSERT INTO cars (id, automarka, rendszam, ar,db) VALUES (@id, @marka, @rendszam, @ar, @db)";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
@@ -72,9 +76,9 @@ namespace Cars
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@id", id);
-                    cmd.Parameters.AddWithValue("@automarka", automarka);
+                    cmd.Parameters.AddWithValue("@marka", automarka);
                     cmd.Parameters.AddWithValue("@rendszam", rendszam);
-                    cmd.Parameters.AddWithValue("@ar", ar); 
+                    cmd.Parameters.AddWithValue("@ar", ar);
                     cmd.Parameters.AddWithValue("@db", db);
 
 
@@ -85,3 +89,8 @@ namespace Cars
         }
     }
 }
+
+
+    
+
+
