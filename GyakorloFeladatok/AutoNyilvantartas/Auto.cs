@@ -42,5 +42,17 @@ namespace Cars
             }
             return dragabb;
         }
+
+        public static List<string> MarkakMegad(List<Auto> autolista) { 
+            List <string> markak = new List<string>();
+            foreach (var item in autolista)
+            {
+                if (!markak.Contains(item.marka)){ 
+                    markak.Add(item.marka);
+
+                }
+            } return (markak);
+        }
+
     }
 }
