@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,5 +26,23 @@ namespace LOL
             this.pozicio = pozicio;
             this.felhnev = felhnev;
         }
+
+        public static int JatekosMegszamol(List<LOL> jatekosok) {
+            return jatekosok.Count;
+        }
+
+        public static  List<string>  NevekMegszamol(List<LOL> jatekosok) {
+         
+            List <string> s_nevek = new List<string>();
+            foreach (var item in jatekosok)
+            {
+                if (item.felhnev.StartsWith("S")){
+                    
+                    s_nevek.Add(item.felhnev);
+                }
+            }
+            return  (s_nevek);
+        }
+
     }
 }
