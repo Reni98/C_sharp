@@ -37,8 +37,13 @@ namespace Regisztracio
                     }
                     Console.WriteLine("Sikeresen fel lettek töltve az adatok az adatbázisba!");
                     */
+                    
+                    //FelhasznaloHozzaad("Proba Elek", "elek45", "elek45@gmail.com", "jelszoo778", new DateTime(1988,1,1));
 
                     FelhasznaloListazas();
+                    //UserAdatModosit("Proba Ernő", "Proba Elek", "elek45");
+                    UserTorles(5);
+                    Console.WriteLine("Az adatok sikeresen modósítva lettek.");
                 }
                 catch (Exception ex) {
                     Console.WriteLine("Hiba történ a kapcsolódás során" + ex.Message);
@@ -66,24 +71,56 @@ namespace Regisztracio
         static void FelhasznaloListazas() {
             string query = "SELECT * FROM userek";
 
+            string filepath = "ujuserek.txt";
+
             using (MySqlConnection conn = new MySqlConnection(connection)) {
                 conn.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query,conn)) {
                     using (MySqlDataReader reader = cmd.ExecuteReader()) {
-                        while (reader.Read())
+                        using (StreamWriter sw = new StreamWriter(filepath))
                         {
-                         int id = reader.GetInt32("id");
-                        string nev = reader.GetString("nev");
-                        string felhnev = reader.GetString("felhnev");
-                        string email = reader.GetString("email");
-                        string jelszo = reader.GetString("jelszo");
-                        DateTime szuldatum = reader.GetDateTime("szuldatum");
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32("id");
+                                string nev = reader.GetString("nev");
+                                string felhnev = reader.GetString("felhnev");
+                                string email = reader.GetString("email");
+                                string jelszo = reader.GetString("jelszo");
+                                DateTime szuldatum = reader.GetDateTime("szuldatum");
 
+                                sw.WriteLine($"ID: {reader["id"]}, Nev: {reader["nev"]}, Felhasználónév: {reader["felhnev"]},Email: {reader["email"]}, Jelszó: {reader["jelszo"]}, Születési dátum: {reader["szuldatum"]}");
 
-                      
-                         Console.WriteLine($"ID: {reader["id"]}, Nev: {reader["nev"]}, Felhasználónév: {reader["felhnev"]},Email: {reader["email"]}, Jelszó: {reader["jelszo"]}, Születési dátum: {reader["szuldatum"]}");
+                                Console.WriteLine($"ID: {reader["id"]}, Nev: {reader["nev"]}, Felhasználónév: {reader["felhnev"]},Email: {reader["email"]}, Jelszó: {reader["jelszo"]}, Születési dátum: {reader["szuldatum"]}");
+                            }
                         }
                     }
+                }
+
+            }
+        }
+
+        static void UserAdatModosit( string reginev,string ujnev, string felhnev) {
+            string query = "UPDATE userek SET nev = @ujnev, felhnev = @felhnev WHERE nev=@reginev";
+            using (MySqlConnection conn = new MySqlConnection(connection)) {
+                conn.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query,conn)) {
+
+                    cmd.Parameters.AddWithValue("@reginev", reginev);
+                    cmd.Parameters.AddWithValue("@ujnev", ujnev);
+                    cmd.Parameters.AddWithValue("@felhnev", felhnev);
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
+        }
+
+        static void UserTorles(int id) {
+            string query = "DELETE FROM userek WHERE id = @id";
+            using (MySqlConnection con = new MySqlConnection(connection)) {
+                con.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, con)) {
+                    cmd.Parameters.AddWithValue("@id",id);
+                    cmd.ExecuteNonQuery();
                 }
 
             }
