@@ -1,0 +1,9 @@
+List<string> szavak = new List<string>
+        {
+            "kard", "pajzs", "varázslat", "ellenség", "páncél",
+            "sárkány", "térkép", "labirintus", "arany", "kristály",
+            "küldetés", "fegyver", "varázsital", "hős", "szörny",
+            "pontszám", "élet", "futás", "ugrás", "boss",
+            "multiplayer", "singleplayer", "co-op", "kihívás", "XP",
+            "szintlépés", "loot", "kaszt", "NPC", "főellenség"
+        };
