@@ -1,147 +1,130 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Auto
+namespace Szojatek
 {
-    internal class Program
+    internal class Jatek
     {
-      public static  string connectionString = "server=localhost;database=autonyilvantart;user=root;password=;";
+        static Random rnd = new Random();
+        public static string connection = "server=localhost;database=szojatek;user=root;password=;";
+        public static string UjSzo() {
 
-        static void Main(string[] args)
+            //Véletlenszerű szót kiválaszt a szavak listából
+            List<string> szavak = new List<string>
         {
+            "kard", "pajzs", "varázslat", "ellenség", "páncél",
+            "sárkány", "térkép", "labirintus", "arany", "kristály",
+            "küldetés", "fegyver", "varázsital", "hős", "szörny",
+            "pontszám", "élet", "futás", "ugrás", "boss",
+            "multiplayer", "singleplayer", "co-op", "kihívás", "XP",
+            "szintlépés", "loot", "kaszt", "NPC", "főellenség"
+        };
 
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
-            {
-                try
-                {
-                    conn.Open();
-                    Console.WriteLine("Sikeres kapcsolat az adatbázishoz!");
-                 
-                    //UjFelhasznalo("Kiss Péter", "peter@example.com");
-                    //UjFelhasznalo("Nagy Anna", "anna@example.com");
-
-
-                    Console.WriteLine("\n--- Felhasználók listája ---");
-                    FelhasznalokListazasa();
-
-                    Console.WriteLine("\n--- Frissítés ---");
-                    FelhasznaloFrissitese(1, "Kiss Péter Jr.", "peterjr@example.com");
-                    FelhasznalokListazasa();
-
-                    Console.WriteLine("\n--- Törlés ---");
-                    FelhasznaloTorlese(2);
-                    FelhasznalokListazasa();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Hiba a kapcsolat során: " + ex.Message);
-                }
-                Console.ReadKey();
-            }
-
-          
-
+            
+            int index = rnd.Next(szavak.Count);
+            string kivalasztott_szo = szavak[index];
+            return kivalasztott_szo;
         }
 
-        static void UjFelhasznalo(string nev, string email)
-        {
-            string query = "INSERT INTO felhasznalok (nev, email) VALUES (@nev, @email)";
-
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
+        public static bool JatekFolytat(out string kivalasztott ) {
+            //A játékos által megadott választól függ, hogy folytatódik a játék,akkor egy új véletlenül
+            //kiválasztott szót kapunk a korábban elkészített UjSzo() metodusból.
+            Console.WriteLine("Szeretnéd folytatni a játékot (igen/nem)");
+            string valasz = Console.ReadLine();
+           
+            if (valasz == "igen")
             {
-                conn.Open();
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@nev", nev);
-                    cmd.Parameters.AddWithValue("@email", email);
-                    cmd.ExecuteNonQuery();
-                }
+                kivalasztott = UjSzo();                                   
+                return true;
+            }
+            else
+            {
+                kivalasztott = "";
+                Console.WriteLine("Játék vége!");
+                return false;
             }
         }
 
-        static void FelhasznalokListazasa()
-        {
-            string query = "SELECT * FROM felhasznalok";
-            string filePath = "felhasznalok.txt"; // A fájl neve
+        public static void UjJatek() {
 
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
-            {
-                conn.Open();
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                using (MySqlDataReader reader = cmd.ExecuteReader())
+            string kivalasztott_szo = UjSzo();
+            Console.WriteLine($"Kiválasztott szó: {kivalasztott_szo}");
+            Console.WriteLine("Üdvözöllek a szójátékban, add meg a neved:");
+            string jates_nev= Console.ReadLine();
+            Console.WriteLine($"Jó játékot {jates_nev}.");
+
+            int elet = 5;
+            int pont = 0;
+            int jatek = 1;
+
+            while (elet > 0) {
+               
+                Console.WriteLine("Adj meg egy szót:");
+                string bekert_szo = Console.ReadLine();
+               
+                if (kivalasztott_szo == bekert_szo)
                 {
+                    Console.WriteLine("Nyertél!");
+                    pont += 1;
+                    string kivalasztott;
 
-
-                    // StreamWriter megnyitása fájlírásra (felülírja a fájlt, ha már létezik)
-                    using (StreamWriter writer = new StreamWriter(filePath))
+                    if (JatekFolytat(out kivalasztott))
                     {
-                        writer.WriteLine("Felhasználók listája:");
-                        writer.WriteLine("=====================\n");
-
-                        Console.WriteLine("\n--- Felhasználók listája ---");
-
-                        while (reader.Read())
+                        elet = 5;
+                        kivalasztott_szo = kivalasztott;
+                        Console.WriteLine($"Kiválasztott szó: {kivalasztott_szo}");
+                        jatek += 1;
+                    }
+                    else {
+                        break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Nem találtad el, próbáld újra!");
+                    elet -= 1;
+                    if (elet == 0) {
+                        string kivalasztott;
+                        if (JatekFolytat(out kivalasztott))
                         {
-                            // Adatok beolvasása
-                            int id = reader.GetInt32("id");
-                            string nev = reader.GetString("nev");
-                            string email = reader.GetString("email");
-
-                            Console.WriteLine($"ID: {reader["id"]}, Név: {reader["nev"]}, Email: {reader["email"]}");
-
-                            // Fájlba írás TXT formátumban
-                            writer.WriteLine($"ID: {id}");
-                            writer.WriteLine($"Név: {nev}");
-                            writer.WriteLine($"Email: {email}");
-                            writer.WriteLine("---------------------");
+                            kivalasztott_szo = kivalasztott;
+                            elet = 5;
+                            Console.WriteLine($"Kiválasztott szó: {kivalasztott_szo}");
+                            jatek += 1;
+                        }
+                        else
+                        {
+                            break;
                         }
                     }
                 }
             }
-            Console.WriteLine($"\nAz adatok mentésre kerültek a(z) {filePath} fájlba.");
+
+            Console.WriteLine($"Játékos neve: {jates_nev}");
+            Console.WriteLine($"Az elért pontszámod: {pont}");
+            Console.WriteLine($"{jatek} kört játszottál.");
+
+            JatekAdatFeltolt(jates_nev, pont, jatek);
+            Console.WriteLine("Az adatok sikeresen fel lettek töltve az adatbázisba.");
 
         }
 
-
-        static void FelhasznaloFrissitese(int id, string ujNev, string ujEmail)
-        {
-            string query = "UPDATE felhasznalok SET nev = @nev, email = @email WHERE id = @id";
-
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
-            {
+        public static void JatekAdatFeltolt(string jatekos_nev,int elertpont,int lejatszottkor) {
+            string query = "INSERT INTO jatek (jatekos_nev,elertpont,lejatszottkor) VALUES (@jatekos_nev,@elertpont,@lejatszottkor)";
+            using (MySqlConnection conn = new MySqlConnection(connection)) {
                 conn.Open();
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.Parameters.AddWithValue("@nev", ujNev);
-                    cmd.Parameters.AddWithValue("@email", ujEmail);
+                using (MySqlCommand cmd = new MySqlCommand(query, conn)) {
+                    cmd.Parameters.AddWithValue("@jatekos_nev",jatekos_nev);
+                    cmd.Parameters.AddWithValue("@elertpont", elertpont);
+                    cmd.Parameters.AddWithValue("@lejatszottkor", lejatszottkor);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
-
-        static void FelhasznaloTorlese(int id)
-        {
-            string query = "DELETE FROM felhasznalok WHERE id = @id";
-
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
-            {
-                conn.Open();
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-
-
-
+        
     }
 }
