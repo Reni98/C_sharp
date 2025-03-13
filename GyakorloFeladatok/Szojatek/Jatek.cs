@@ -1,4 +1,5 @@
-﻿using System;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace Szojatek
     internal class Jatek
     {
         static Random rnd = new Random();
-
+        public static string connection = "server=localhost;database=szojatek;user=root;password=;";
         public static string UjSzo() {
 
             //Véletlenszerű szót kiválaszt a szavak listából
@@ -103,9 +104,26 @@ namespace Szojatek
                 }
             }
 
+            Console.WriteLine($"Játékos neve: {jates_nev}");
             Console.WriteLine($"Az elért pontszámod: {pont}");
             Console.WriteLine($"{jatek} kört játszottál.");
 
+            JatekAdatFeltolt(jates_nev, pont, jatek);
+            Console.WriteLine("Az adatok sikeresen fel lettek töltve az adatbázisba.");
+
+        }
+
+        public static void JatekAdatFeltolt(string jatekos_nev,int elertpont,int lejatszottkor) {
+            string query = "INSERT INTO jatek (jatekos_nev,elertpont,lejatszottkor) VALUES (@jatekos_nev,@elertpont,@lejatszottkor)";
+            using (MySqlConnection conn = new MySqlConnection(connection)) {
+                conn.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, conn)) {
+                    cmd.Parameters.AddWithValue("@jatekos_nev",jatekos_nev);
+                    cmd.Parameters.AddWithValue("@elertpont", elertpont);
+                    cmd.Parameters.AddWithValue("@lejatszottkor", lejatszottkor);
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
         
     }
