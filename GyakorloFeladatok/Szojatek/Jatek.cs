@@ -9,9 +9,21 @@ namespace Szojatek
 {
     internal class Jatek
     {
+        public string jatekos_nev;
+        public int pont;
+        public int jatek;
         static Random rnd = new Random();
-        public static string connection = "server=localhost;database=szojatek;user=root;password=;";
-        public static string UjSzo() {
+
+        public Jatek(string jatekos_nev, int pont, int jatek)
+        {
+            this.jatekos_nev = jatekos_nev;
+            this.pont = pont;
+            this.jatek = jatek;
+        }
+
+       
+       
+        public string UjSzo() {
 
             //Véletlenszerű szót kiválaszt a szavak listából
             List<string> szavak = new List<string>
@@ -30,7 +42,7 @@ namespace Szojatek
             return kivalasztott_szo;
         }
 
-        public static bool JatekFolytat(out string kivalasztott ) {
+        public  bool JatekFolytat(out string kivalasztott ) {
             //A játékos által megadott választól függ, hogy folytatódik a játék,akkor egy új véletlenül
             //kiválasztott szót kapunk a korábban elkészített UjSzo() metodusból.
             Console.WriteLine("Szeretnéd folytatni a játékot (igen/nem)");
@@ -49,7 +61,7 @@ namespace Szojatek
             }
         }
 
-        public static void UjJatek() {
+        public  (string,int,int) UjJatek() {
 
             string kivalasztott_szo = UjSzo();
             Console.WriteLine($"Kiválasztott szó: {kivalasztott_szo}");
@@ -69,7 +81,7 @@ namespace Szojatek
                 if (kivalasztott_szo == bekert_szo)
                 {
                     Console.WriteLine("Nyertél!");
-                    pont += 1;
+                    pont ++;
                     string kivalasztott;
 
                     if (JatekFolytat(out kivalasztott))
@@ -77,7 +89,7 @@ namespace Szojatek
                         elet = 5;
                         kivalasztott_szo = kivalasztott;
                         Console.WriteLine($"Kiválasztott szó: {kivalasztott_szo}");
-                        jatek += 1;
+                        jatek ++;
                     }
                     else {
                         break;
@@ -86,7 +98,7 @@ namespace Szojatek
                 else
                 {
                     Console.WriteLine("Nem találtad el, próbáld újra!");
-                    elet -= 1;
+                    elet --;
                     if (elet == 0) {
                         string kivalasztott;
                         if (JatekFolytat(out kivalasztott))
@@ -94,7 +106,7 @@ namespace Szojatek
                             kivalasztott_szo = kivalasztott;
                             elet = 5;
                             Console.WriteLine($"Kiválasztott szó: {kivalasztott_szo}");
-                            jatek += 1;
+                            jatek ++;
                         }
                         else
                         {
@@ -108,23 +120,11 @@ namespace Szojatek
             Console.WriteLine($"Az elért pontszámod: {pont}");
             Console.WriteLine($"{jatek} kört játszottál.");
 
-            JatekAdatFeltolt(jates_nev, pont, jatek);
-            Console.WriteLine("Az adatok sikeresen fel lettek töltve az adatbázisba.");
 
+            return (jates_nev, pont, jatek);
         }
 
-        public static void JatekAdatFeltolt(string jatekos_nev,int elertpont,int lejatszottkor) {
-            string query = "INSERT INTO jatek (jatekos_nev,elertpont,lejatszottkor) VALUES (@jatekos_nev,@elertpont,@lejatszottkor)";
-            using (MySqlConnection conn = new MySqlConnection(connection)) {
-                conn.Open();
-                using (MySqlCommand cmd = new MySqlCommand(query, conn)) {
-                    cmd.Parameters.AddWithValue("@jatekos_nev",jatekos_nev);
-                    cmd.Parameters.AddWithValue("@elertpont", elertpont);
-                    cmd.Parameters.AddWithValue("@lejatszottkor", lejatszottkor);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
+       
         
     }
 }
