@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
@@ -23,14 +23,13 @@ namespace Bank
 
         public (string, int, int) TulajdonosAdatai()
         {
-
-
+            string tulajdonos_nev = "";
             int azonosito = 0;
             int pinkod= 0;
 
             while (azonosito == 0 && pinkod == 0) {
                 Console.WriteLine("Adja meg a nevét: ");
-                string tulajdonos_nev = Console.ReadLine();
+                tulajdonos_nev = Console.ReadLine();
                 Console.WriteLine("Adja meg az azonositó számát: ");
                 string bekertazonosito = Console.ReadLine();
                 Console.WriteLine("Adja meg a pinkodot:");
@@ -41,7 +40,6 @@ namespace Bank
                 }
                 else {
                     azonosito = Convert.ToInt32(bekertazonosito);
-                    Console.WriteLine(azonosito);
                 }
                 if (bekertpinkod.Length != 4)
                 {
@@ -49,7 +47,6 @@ namespace Bank
                 }
                 else {
                     pinkod = Convert.ToInt32(bekertpinkod);
-                    Console.WriteLine(pinkod);
 
                 }
 
