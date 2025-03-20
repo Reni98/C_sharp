@@ -13,6 +13,8 @@ namespace Bank
             int azonositas = 0;
             int pinkodmegad = 0;
             string tulajdonos_neve = "";
+            string szamlaszama = "";
+            decimal osszeg = 0;
             
 
             Console.WriteLine("Nálunk bankol már?");
@@ -22,14 +24,33 @@ namespace Bank
             {
                 SzamlaTulajdonos tulajdonos = new SzamlaTulajdonos("", 0, 0);
                 var (tulajdonos_nev, azonosito, pinkod) = tulajdonos.TulajdonosAdatai();
-                Create.TulajdonosAdatFeltolt(tulajdonos_nev, azonosito, pinkod);
+                int tulajdonos_id = Create.TulajdonosAdatFeltolt(tulajdonos_nev, azonosito, pinkod);
                 Console.WriteLine("Sikeres volt az adatfeltöltés.");
+
+                Szamla szamla = new Szamla();
+                 var (szamlaszam, egyenleg) = szamla.SzamlaLetrehozas();
+                Create.SzamlaFeltolt(tulajdonos_id, szamlaszam,egyenleg);
+                Console.WriteLine("A számla sikeresn létre lett hozva.");
+
+
 
             }
             else {
                 if (Ellenorzes.AdatEllenorzes(tulajdonos_neve, azonositas, pinkodmegad))
                 {
                     Console.WriteLine("Sikeresen belépett a fiókjába.");
+                    Console.WriteLine("Melyik válassza válassza:\n 1.Egyenleg lekérés, \n 2.Befizetés, \n 3.Pénz felvétel");
+                    string muvelet = Console.ReadLine();
+                    switch (muvelet) {
+                        case "1": {
+                                SzamlaMuveletek.EgyenlegLekeres();
+                                break;
+                            }
+                        case "2": {
+                                SzamlaMuveletek.Befizetes(szamlaszama,osszeg);
+                                break;
+                            }
+                    }
                 }
                 else
                 {
