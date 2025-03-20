@@ -1,3 +1,4 @@
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,63 +7,70 @@ using System.Threading.Tasks;
 
 namespace Bank
 {
-    internal class Program
+    internal class SzamlaMuveletek
     {
-        static void Main(string[] args)
-        {
-            int azonositas = 0;
-            int pinkodmegad = 0;
-            string tulajdonos_neve = "";
-            string szamlaszama = "";
-            decimal osszeg = 0;
-            
+        public static string connect = "server=localhost;database = bank;user = root; password = ;";
 
-            Console.WriteLine("Nálunk bankol már?");
-            string valasz = Console.ReadLine();
+        public static void EgyenlegLekeres() {
+            string query = "SELECT szamlaszam,egyenleg FROM szamlak";
+            using (MySqlConnection conn = new MySqlConnection(connect)) {
+                conn.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query,conn)) {
+                    using (MySqlDataReader reader = cmd.ExecuteReader()) {
+                        while (reader.Read()) {
+                            string szamlaszam = reader.GetString("szamlaszam");
+                            decimal egyenleg = reader.GetDecimal("egyenleg");
+                        }
 
-            if (valasz == "nem")
-            {
-                SzamlaTulajdonos tulajdonos = new SzamlaTulajdonos("", 0, 0);
-                var (tulajdonos_nev, azonosito, pinkod) = tulajdonos.TulajdonosAdatai();
-                int tulajdonos_id = Create.TulajdonosAdatFeltolt(tulajdonos_nev, azonosito, pinkod);
-                Console.WriteLine("Sikeres volt az adatfeltöltés.");
+                        Console.WriteLine("------Számla adatai-------");
+                        Console.WriteLine($"Szamlaszam: {reader["szamlaszam"]},\n Egyenleg: {reader["egyenleg"]}");
 
-                Szamla szamla = new Szamla();
-                 var (szamlaszam, egyenleg) = szamla.SzamlaLetrehozas();
-                Create.SzamlaFeltolt(tulajdonos_id, szamlaszam,egyenleg);
-                Console.WriteLine("A számla sikeresn létre lett hozva.");
-
-
-
-            }
-            else {
-                if (Ellenorzes.AdatEllenorzes(tulajdonos_neve, azonositas, pinkodmegad))
-                {
-                    Console.WriteLine("Sikeresen belépett a fiókjába.");
-                    Console.WriteLine("Melyik válassza válassza:\n 1.Egyenleg lekérés, \n 2.Befizetés, \n 3.Pénz felvétel");
-                    string muvelet = Console.ReadLine();
-                    switch (muvelet) {
-                        case "1": {
-                                SzamlaMuveletek.EgyenlegLekeres();
-                                break;
-                            }
-                        case "2": {
-                                SzamlaMuveletek.Befizetes(szamlaszama,osszeg);
-                                break;
-                            }
                     }
-                }
-                else
-                {
-                    Console.WriteLine("Hibás adatot adott meg.");
+                
                 }
             }
-
-
-           
-           
-         
-            Console.ReadKey();
-        }
+        
     }
+
+        public static void Befizetes(string szamlaszam,decimal osszeg) {
+            Console.WriteLine("Add meg a számlaszámod:");
+             szamlaszam = Console.ReadLine();
+            Console.WriteLine("Add meg az összeget:");
+             osszeg = decimal.Parse(Console.ReadLine());
+
+            using (MySqlConnection conn = new MySqlConnection(connect)) {
+                conn.Open();
+                string query = "UPDATE szamlak SET egyenleg = egyenleg + @osszeg WHERE szamlaszam = @szamlaszam";
+                using (MySqlCommand cmd = new MySqlCommand(query, conn)) {
+                    cmd.Parameters.AddWithValue("@szamlaszam", szamlaszam);
+                    cmd.Parameters.AddWithValue("@osszeg", osszeg);
+                    cmd.ExecuteNonQuery();
+                    Console.WriteLine("Sikeresen módosítva lett az egyenleg.");
+                }
+            
+            }
+
+        }
+
+        public static void Penzfelvetel(string szamlaszam,decimal osszeg) {
+            Console.WriteLine("Add meg számlaszámod:");
+            szamlaszam = Console.ReadLine();
+            Console.WriteLine("Add meg, hogy mekkora összeget szeretnél felvenni:");
+            osszeg = decimal.Parse(Console.ReadLine());
+
+            using (MySqlConnection conn = new MySqlConnection(connect)) {
+                conn.Open();
+
+                string query = "UPDATE szamlak SET egyenleg = egyenleg - @osszeg WHERE szamlaszam = @szamlaszam";
+                using (MySqlCommand cmd = new MySqlCommand(query, conn)) {
+                    cmd.Parameters.AddWithValue("@szamlaszam", szamlaszam);
+                    cmd.Parameters.AddWithValue("@osszeg", osszeg);
+                    cmd.ExecuteNonQuery();
+                    Console.WriteLine("Sikeres volt a pénzfelvétel.");
+
+                }
+            }
+        }
+}
+
 }
