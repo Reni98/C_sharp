@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +50,26 @@ namespace Bank
             
             }
 
+        }
+
+        public static void Penzfelvetel(string szamlaszam,decimal osszeg) {
+            Console.WriteLine("Add meg számlaszámod:");
+            szamlaszam = Console.ReadLine();
+            Console.WriteLine("Add meg, hogy mekkora összeget szeretnél felvenni:");
+            osszeg = decimal.Parse(Console.ReadLine());
+
+            using (MySqlConnection conn = new MySqlConnection(connect)) {
+                conn.Open();
+
+                string query = "UPDATE szamlak SET egyenleg = egyenleg - @osszeg WHERE szamlaszam = @szamlaszam";
+                using (MySqlCommand cmd = new MySqlCommand(query, conn)) {
+                    cmd.Parameters.AddWithValue("@szamlaszam", szamlaszam);
+                    cmd.Parameters.AddWithValue("@osszeg", osszeg);
+                    cmd.ExecuteNonQuery();
+                    Console.WriteLine("Sikeres volt a pénzfelvétel.");
+
+                }
+            }
         }
 }
 
