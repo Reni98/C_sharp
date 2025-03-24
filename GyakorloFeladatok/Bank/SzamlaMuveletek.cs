@@ -32,11 +32,27 @@ namespace Bank
         
     }
 
-        public static void Befizetes(string szamlaszam,decimal osszeg) {
+        public static (int,decimal,string) Befizetes(string szamlaszam,decimal osszeg) {
             Console.WriteLine("Add meg a számlaszámod:");
              szamlaszam = Console.ReadLine();
             Console.WriteLine("Add meg az összeget:");
              osszeg = decimal.Parse(Console.ReadLine());
+
+            string tipus = "Befizetés";
+            int szamla_id = 0;
+            using (MySqlConnection mySqlConnection = new MySqlConnection(connect)){
+                mySqlConnection.Open();
+
+                string szamlaID = "SELECT szamla_id FROM szamlak WHERE szamlaszam = @szamlaszam";
+                using (MySqlCommand idCmd = new MySqlCommand(szamlaID,mySqlConnection)) {
+                    idCmd.Parameters.AddWithValue("@szamlaszam", szamlaszam);
+                   object szamlai = idCmd.ExecuteScalar();
+                     szamla_id = Convert.ToInt32(szamlai);
+
+                    
+                }
+            
+            }
 
             using (MySqlConnection conn = new MySqlConnection(connect)) {
                 conn.Open();
@@ -49,15 +65,33 @@ namespace Bank
                 }
             
             }
-
+            return (szamla_id, osszeg, tipus);
         }
 
-        public static void Penzfelvetel(string szamlaszam,decimal osszeg) {
+        public static (int,decimal,string) Penzfelvetel(string szamlaszam,decimal osszeg) {
             Console.WriteLine("Add meg számlaszámod:");
             szamlaszam = Console.ReadLine();
             Console.WriteLine("Add meg, hogy mekkora összeget szeretnél felvenni:");
             osszeg = decimal.Parse(Console.ReadLine());
 
+            string tipus = "Felvesz";
+
+            int szamla_id = 0;
+            using (MySqlConnection mySqlConnection = new MySqlConnection(connect))
+            {
+                mySqlConnection.Open();
+
+                string szamlaID = "SELECT szamla_id FROM szamlak WHERE szamlaszam = @szamlaszam";
+                using (MySqlCommand idCmd = new MySqlCommand(szamlaID, mySqlConnection))
+                {
+                    idCmd.Parameters.AddWithValue("@szamlaszam", szamlaszam);
+                    object szamlai = idCmd.ExecuteScalar();
+                    szamla_id = Convert.ToInt32(szamlai);
+
+
+                }
+
+            }
             using (MySqlConnection conn = new MySqlConnection(connect)) {
                 conn.Open();
 
@@ -70,6 +104,8 @@ namespace Bank
 
                 }
             }
+
+            return(szamla_id,osszeg,tipus);
         }
 }
 
