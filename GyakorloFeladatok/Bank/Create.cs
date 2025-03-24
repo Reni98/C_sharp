@@ -49,5 +49,21 @@ namespace Bank
             }
         
         }
+
+        public static void TranzakcioFeltolt(int szamla_id, DateTime datum, decimal osszeg, string tipus) {
+            string query = "INSERT INTO tranzakciok (szamla_id, datum,osszeg,tipus) VALUES (@szamla_id, @datum,@osszeg,@tipus)";
+            using (MySqlConnection conn = new MySqlConnection(connect)) {
+                conn.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, conn)) {
+                    cmd.Parameters.AddWithValue("@szamla_id", szamla_id);
+                    cmd.Parameters.AddWithValue("@datum", datum);
+                    cmd.Parameters.AddWithValue("@osszeg", osszeg);
+                    cmd.Parameters.AddWithValue("@tipus", tipus);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+
+        }
     }
 }
